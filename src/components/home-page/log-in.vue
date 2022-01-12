@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import api_reproductor from "@/apis/api.js";
 export default {
   name: "login",
   data() {
@@ -38,9 +39,27 @@ export default {
     };
   },
   methods: {
-    log_in() {
-      //console.table([this.email, this.password]);
+    login_ok(token) {
+      localStorage.setItem("token", token);
       this.$router.push({ name: "hear" });
+    },
+    async log_in() {
+      const data = {
+        email: this.email,
+        password: this.password,
+      };
+      console.log(9);
+      await api_reproductor
+        .login(data)
+        .then((res) => {
+          console.log(res);
+          res.data.status === "success"
+            ? this.login_ok(res.data.token)
+            : alert("no sirve pa ni mrd");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

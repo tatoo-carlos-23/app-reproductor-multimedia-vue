@@ -1,7 +1,7 @@
 <template>
   <div class="navbar">
     <span class="data-navbar data-navbar-span">
-      ¡Hola Carlos Abramonte! <i class="fas fa-user"></i>
+      ¡Hola {{ user }}! <i class="fas fa-user"></i>
     </span>
     <i
       class="fas fa-bars data-navbar data-navbar-i"
@@ -24,6 +24,9 @@
 import menudropdown from "@/components/hear-page/navigation/menu-drop-down.vue";
 export default {
   name: "navbar",
+  props: {
+    user: String,
+  },
   components: {
     menudropdown,
   },
