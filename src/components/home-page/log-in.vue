@@ -5,17 +5,19 @@
     </div>
     <div class="sub-container">
       <h1 class="title">Reproductor <span>de musica</span></h1>
-      <form action="">
+      <form action="" @submit.prevent="log_in()">
         <div class="inputs-style">
           <input
             class="input-email"
             type="email"
             placeholder="Correo electronico"
+            v-model="email"
           />
           <input
             class="input-password"
             type="password"
             placeholder="Contraseña"
+            v-model="password"
           />
         </div>
         <div class="button-login">
@@ -29,6 +31,18 @@
 <script>
 export default {
   name: "login",
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    log_in() {
+      //console.table([this.email, this.password]);
+      this.$router.push({ name: "hear" });
+    },
+  },
 };
 </script>
 
@@ -44,7 +58,7 @@ body {
   align-items: center;
   flex-direction: column;
   width: 100%;
-  height: 90vh;
+  height: 100vh;
 }
 .img-style {
   height: 200px;
@@ -57,8 +71,9 @@ body {
 }
 .title {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   font-size: 40px;
+  color: #ffff;
 }
 span {
   color: red;
@@ -123,7 +138,7 @@ span {
   }
   .title {
     text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+    /* font-family: Arial, Helvetica, sans-serif; */
     font-size: 40px;
   }
   span {
